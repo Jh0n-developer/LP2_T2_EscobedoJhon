@@ -117,4 +117,19 @@ public class EmpleadoController {
 	        return "editar_empleado";
 	    }
 	}
+	
+	@GetMapping("/eliminar_empleado/{id}")
+    public String eliminarEmpleado(@PathVariable("id") String dni_empleado, Model model) {
+        Optional<EmpleadoEntity> empleadoOptional = empleadoRepository.findById(dni_empleado);
+        
+        if (empleadoOptional.isPresent()) {
+            empleadoRepository.delete(empleadoOptional.get());
+            return "redirect:/";
+        } else {
+            model.addAttribute("errorMessage", "Empleado no encontrado");
+            List<EmpleadoEntity> listaEmpleado = empleadoRepository.findAll();
+            model.addAttribute("listaEmpleado", listaEmpleado);
+            return "index";
+        }
+    }
 }
