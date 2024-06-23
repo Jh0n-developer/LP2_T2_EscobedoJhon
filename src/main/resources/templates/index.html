@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LISTA DE EMPLEADOS</title>
+    <!-- Estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+    	<br>
+        <h2>Lista de Empleados</h2>
+        <br>
+
+		<a th:href="@{/registrar_empleado}" class="btn btn-primary">Registrar</a>
+        <!-- Tabla de usuarios -->
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Dirección</th>
+                    <th>Correo</th>
+                    <th>Area</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="emple : ${listaEmpleado}">
+        			<td th:text="${emple.dni_empleado}"></td>
+        			<td th:text="${emple.nombre_empleado}"></td>
+        			<td th:text="${emple.apellido_empleado}"></td>
+        			<td th:text="${#dates.format(emple.fecha_nacimiento, 'dd-MM-yyyy')}"></td>
+        			<td th:text="${emple.direccion}"></td>
+        			<td th:text="${emple.correo}"></td>
+        			<td th:text="${emple.areaEntity.nombre_area}"></td>
+        			<td>
+            		<a th:href="@{/editar_empleado/{id}(id=${emple.dni_empleado})}" class="btn btn-warning">Editar</a>|
+            		<a th:href="@{/eliminar_empleado/{id}(id=${emple.dni_empleado})}" class="btn btn-danger">Eliminar</a>   
+        			</td>
+    			</tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Scripts de Bootstrap y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
