@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -12,13 +14,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "tb_empleado")
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmpleadoEntity {
@@ -34,7 +34,8 @@ public class EmpleadoEntity {
 	private String apellido_empleado;
 	
 	@Column(name = "fecha_nacimiento", columnDefinition = "DATE")
-	private Date fecha_nacimiento;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fecha_nacimiento;
 	
 	@Column(name = "direccion", columnDefinition = "VARCHAR(45)")
 	private String direccion;
@@ -45,4 +46,16 @@ public class EmpleadoEntity {
 	@ManyToOne
 	@JoinColumn(name = "area_id", columnDefinition = "INT", nullable = false)
 	private AreaEntity areaEntity;
+	
+	@Override
+	public String toString() {
+	    return "EmpleadoEntity{" +
+	            "dni_empleado='" + dni_empleado + '\'' +
+	            ", nombre_empleado='" + nombre_empleado + '\'' +
+	            ", apellido_empleado='" + apellido_empleado + '\'' +
+	            ", fecha_nacimiento=" + fecha_nacimiento +
+	            ", direccion='" + direccion + '\'' +
+	            ", correo='" + correo + '\'' +
+	            '}';
+	}
 }

@@ -14,13 +14,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "tb_area")
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class AreaEntity {
@@ -35,4 +33,12 @@ public class AreaEntity {
 	
 	@OneToMany(mappedBy = "areaEntity", cascade = CascadeType.ALL)
 	private List<EmpleadoEntity> empleadoEntity;
+	
+	@Override
+	public String toString() {
+	    return "AreaEntity{" +
+	            "area_id=" + area_id +
+	            ", nombre_area='" + nombre_area + '\'' +
+	            '}';
+	}
 }

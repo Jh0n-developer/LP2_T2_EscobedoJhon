@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Examen T2</title>
+    <title>LISTA DE EMPLEADOS</title>
     <!-- Estilos de Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
     	<br>
-        <h2>LISTA DE EMPLEADOS</h2>
+        <h2>Lista de Empleados</h2>
         <br>
 
 		<a th:href="@{/registrar_empleado}" class="btn btn-primary">Registrar</a>
@@ -32,12 +32,11 @@
         			<td th:text="${emple.dni_empleado}"></td>
         			<td th:text="${emple.nombre_empleado}"></td>
         			<td th:text="${emple.apellido_empleado}"></td>
-        			<td th:text="${emple.fecha_nacimiento}"></td>
+        			<td th:text="${#dates.format(emple.fecha_nacimiento, 'dd-MM-yyyy')}"></td>
         			<td th:text="${emple.direccion}"></td>
         			<td th:text="${emple.correo}"></td>
         			<td th:text="${emple.areaEntity.nombre_area}"></td>
         			<td>
-            		<a th:href="@{/detalle_empleado/{id}(id=${emple.dni_empleado})}" class="btn btn-info">Ver</a> |
             		<a th:href="@{/editar_empleado/{id}(id=${emple.dni_empleado})}" class="btn btn-warning">Editar</a>|
             		<a th:href="@{/eliminar_empleado/{id}(id=${emple.dni_empleado})}" class="btn btn-danger">Eliminar</a>   
         			</td>
