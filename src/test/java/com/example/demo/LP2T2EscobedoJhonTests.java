@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TemporalApplicationTests {
+class LP2T2EscobedoJhonTests {
 
 	@Test
 	void contextLoads() {
